@@ -1,0 +1,64 @@
+<!doctype html>
+<head>
+
+</head>
+<body>
+    <!--<script src="https://en.js.cx/test/libs.js"></script>-->
+    <!--<script src="test.js"></script>-->
+    <script>
+
+        //class Calculator {
+        //    a;
+        //    b;
+        //    constructor() {
+        //        this.a = this.read("a");
+        //        this.b = this.read("b");
+        //        this.sum();
+        //        this.mul();
+        //    }
+        //    read(input){
+        //        return prompt(`Please enter ${input}`);
+        //    }
+        //    sum(){
+        //        //let sum = a+b;
+        //        alert(`sum = ${parseInt(this.a) + parseInt(this.b)}`);
+        //    }
+        //    mul(){
+        //        //let mul = a*b;
+        //        alert(`mul = ${this.a*this.b}`);
+        //    }
+        //}
+
+        //let calculator = new Calculator()
+
+            let calculator = {
+                read(){
+                    this.a = parseInt(prompt(`a?`));
+                    this.b = parseInt(prompt(`b?`));
+                },
+                sum() {
+                    return(this.a + this.b);
+                },
+                mul(){
+                    return(this.a * this.b);
+                },
+                sub(){
+                    return(this.a - this.b);
+                },
+                div(){
+                    return(this.a / this.b);
+                }
+            }
+
+            calculator.read();
+            alert(calculator.sum());
+            alert(calculator.mul());
+            alert(calculator.sub());
+            alert(calculator.div());
+
+    </script>
+    
+</body>
+
+
+</html>
