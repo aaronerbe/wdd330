@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Basic Math</title>
+</head>
+
+<body>
+<script type="module">
+  //  this code works great
+  //  first of all the script block specifies that it is a module.
+  //  Hence it knows about cool stuff like import
+  import { sqRoot, getUrlVar } from './basicMath.js';
+  let num = getUrlVar('num');   //  get the value of the URL param: num
+
+  if (typeof num === 'undefined')
+
+      num = 137;     // default to 137
+  let ans = sqRoot(num);        //  calculate the Square Root
+  console.log(ans);             //  log to console
+  //  push to the web page for fun
+
+  document.body.innerText = `The square root of ${num} is ${ans}`;
+
+</script>
+
+<script type ="module">
+  import {sqRoot, getUrlVar} from './basicMath.js';
+  let num2 = getUrlVar('num');   //  get the value of the URL param: num
+
+
+  // after you have seen that the sqRoot code below does not work.
+      console.log(num2);     /*Uncomment this line*/
+  // you will see that the variable num is also not visible between script blocks either
+  // it is as if the script tag inserts an opening and closing set of curly braces around the code,
+  // thus scope blocking everything in the tag
+
+  //  looking in the console you will see that this code does not work
+
+  //  What are your thoughts on why that is?
+
+  //  it seems like if we imported the file from above it would still be visible
+  //  but that is not how modules work. The SCOPE of the imports is just in that script tag
+  let ans2 = sqRoot(441);    //  sqRoot is undefined. We cannot get past this point
+  console.log(ans2);
+  document.body.innerText = `The square root of 441 is ${ans2}`;
+</script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latter-Day Prophets</title>
+</head>
+<body>
+    <div id="prophets"></div>
+    <template id="prophet-card">
+        <section class="card">
+            <h2 class="fullname"></h2>
+            <p class="birthdate"></p>
+            <p class="birthplace"></p>
+            <img src="" alt="" class="profile">
+        </section>
+    </template>
+</body>
+
+<script>
+    const div = document.getElementById('prophets');
+    let cardSection = document.getElementById('card');
+    let prophetTemplate = document.getElementById('prophet-card');
+    let allProphets = [];
+    let url = 'https://brotherblazzard.github.io/canvas-content/latter-day-prophets.json';
+
+    //getProphetData(url).then(() => {
+    //    allProphets.forEach(prophet => {
+    //        createCard(prophet);
+    //    });
+    //});
+
+    getProphetData(url).then(allProphets => {
+        allProphets.forEach(prophet => {
+            createCard(prophet);
+        });
+    });
+
+    async function getProphetData(url){
+        try{
+            const response = await fetch(url);
+            if (response.ok){
+                const data = await response.json();
+                return data.prophets;
+            } else {
+                throw Error(await response.text());
+            }
+        } catch (error){
+            console.error('Error fetching data:', error);
+            return [];
+        }
+    }
+    
+    function createCard(prophet){
+        const node = prophetTemplate.content.cloneNode(true);
+        const fullname = node.querySelector('.fullname');
+        const birthdate = node.querySelector('.birthdate');
+        const birthplace = node.querySelector('.birthplace');
+        const profile = node.querySelector('.profile');
+
+        //console.log(`prophet.name = ${prophet.name}`);
+
+        fullname.textContent = prophet.name + ' ' + prophet.lastname;
+        birthdate.textContent = prophet.birthdate;
+        birthplace.textContent = prophet.birthplace;
+        profile.src = prophet.imageurl;
+        profile.width = 300;
+        console.log(prophet.imageurl);
+
+        div.appendChild(node);
+    }
+
+
+
+</script>
+</html>
