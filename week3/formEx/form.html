@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formElem">
+        <input type="text" name="name" value="John">
+        <input type="text" name="surname" value="Smith">
+        <input type="submit">
+      </form>
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const formElem = document.getElementById('formElem');
+        formElem.addEventListener('submit', handleForm);
+      });
+      function handleForm(e){
+          e.preventDefault();
+          //capture the form data
+          let myForm = e.target;
+          //create new object with form data
+          let fd = new FormData(myForm);
+          //append current data
+          const date = new Date();
+          fd.append('date',date);
+          for (let key of fd.keys()){
+            console.log(key,fd.get(key));
+          }
+      }
+      </script>
+</body>
+</html>
